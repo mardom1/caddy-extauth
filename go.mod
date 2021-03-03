@@ -1,4 +1,4 @@
-module github.com/trusch/caddy-extauth
+module github.com/mardom1/caddy-extauth
 
 go 1.15
 
