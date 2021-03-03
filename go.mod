@@ -1,4 +1,4 @@
-module github.com/mardom1/caddy-extauth
+module github.com/tusch/caddy-extauth
 
 go 1.15
 
@@ -35,3 +35,5 @@ require (
 	google.golang.org/grpc v1.33.0 // indirect
 	howett.net/plist v0.0.0-20200419221736-3b63eb3a43b5 // indirect
 )
+
+replace github.com/tusch/caddy-extauth => github.com/mardom1/caddy-extauth
