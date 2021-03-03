@@ -66,14 +66,10 @@ func (m Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddy
 	}
 
 	// set additional headers
+	repl := r.Context().Value(caddy.ReplacerCtxKey).(*caddy.Replacer)
 	for key, val := range m.SetHeaders {
-		if val == "{http.request.uri}" {
-			val = r.URL.RequestURI()
-		}
-		if val == "{http.request.method}" {
-			val = r.Method
-		}
-		authReq.Header.Set(key, val)
+		value := repl.ReplaceAll(val, "<empty>")
+		authReq.Header.Set(key, value)
 	}
 
 	// perform the request
