@@ -76,9 +76,7 @@ func (m Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next caddy
 	resp, err := m.httpClient.Do(authReq)
 	if err != nil || resp.StatusCode != http.StatusOK {
 		// something went wrong or the server responded with something != 200 -> reject request with 401
-		log.Error().Str("url", r.URL.RequestURI()).Msg("failed to authenticate")
-		w.WriteHeader(http.StatusUnauthorized)
-		return nil
+		return caddyhttp.Error(http.StatusUnauthorized, fmt.Errorf("failed to authenticate: %v", err))
 	}
 	log.Info().Str("url", r.URL.RequestURI()).Msg("successfully authenticated")
 
