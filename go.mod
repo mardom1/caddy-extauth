@@ -1,6 +1,6 @@
 module github.com/mardom1/caddy-extauth
 
-go 1.0
+go 1.16
 
 require (
 	cloud.google.com/go v0.54.0 // indirect
